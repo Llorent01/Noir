@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noir — Perfumería de Autor · Decants 5ML y 10ML</title>
+<meta name="description" content="Noir. Perfumes originales en decants de 5ML y 10ML. Descubre tu próxima fragancia antes de comprar el frasco completo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,600;1,700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" type="image/png" href="img/Logo 640px.jpg">
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+
+    <a href="#inicio" class="logo" aria-label="Noir — Inicio">
+      <img src="img/Logo 640px.jpg" alt="Noir" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+      <span class="logo-text" style="display:none;">Noir</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Navegación principal">
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#decants" class="nav-featured">Decants<span class="nav-dot"></span></a></li>
+        <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+        <li><a href="#que-es-un-decant">¿Qué es un decant?</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="search-wrap header-search-inline" id="searchWrap">
+        <input type="text" class="search-input" id="searchInput" placeholder="Buscar fragancia…" aria-label="Buscar fragancia">
+        <button class="icon-btn" id="searchToggle" aria-label="Buscar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        </button>
+      </div>
+
+      <a class="btn-whatsapp btn btn-sm header-whatsapp" id="headerWhatsapp" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.8 2.7 5.2 5.5 5.5"/></svg>
+        <span>WhatsApp</span>
+      </a>
+
+      <button class="icon-btn" id="cartToggle" aria-label="Abrir carrito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h2l1.6 10.2a2 2 0 0 0 2 1.8h7.6a2 2 0 0 0 2-1.7L20 8H7"/><circle cx="10" cy="21" r="1"/><circle cx="17" cy="21" r="1"/></svg>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+      <button class="icon-btn nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<!-- Mobile nav -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-top">
+    <span class="logo-text">Noir</span>
+    <button class="icon-btn" id="navClose" aria-label="Cerrar menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#decants">Decants</a></li>
+    <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+    <li><a href="#que-es-un-decant">¿Qué es un decant?</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="mobile-search">
+    <input type="text" id="mobileSearchInput" placeholder="Buscar fragancia…" aria-label="Buscar fragancia">
+  </div>
+</div>
+
+<main>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="inicio">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Perfumería de autor</span>
+      <h1 class="hero-title">Descubre tu próxima fragancia</h1>
+      <p class="hero-text">Explora perfumes originales en presentaciones de 5&nbsp;ML y 10&nbsp;ML. Prueba lo que quieras, sin comprometerte con un frasco completo.</p>
+      <div class="hero-cta">
+        <a href="#decants" class="btn btn-primary">Ver decants</a>
+        <a href="#perfumes-100" class="btn btn-outline">Ver perfumes 100 ML</a>
+      </div>
+      <div class="hero-meta">
+        <div>Formato principal<span>5 ML · 10 ML</span></div>
+        <div>Originalidad<span>100% garantizada</span></div>
+        <div>Envíos<span>A todo el país</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg class="ripple-svg" viewBox="0 0 400 400">
+        <circle class="ripple-anim r1" cx="200" cy="200" r="70"/>
+        <circle class="ripple-anim r2" cx="200" cy="200" r="120"/>
+        <circle class="ripple-anim r3" cx="200" cy="200" r="170"/>
+        <g class="bottle" transform="translate(170,120)">
+          <rect x="0" y="34" width="60" height="110" rx="4"/>
+          <rect x="20" y="10" width="20" height="24" rx="2"/>
+          <rect x="14" y="0" width="32" height="12" rx="3" class="bottle-cap"/>
+          <line x1="10" y1="70" x2="50" y2="70" stroke-width=".6"/>
+          <line x1="10" y1="90" x2="50" y2="90" stroke-width=".6"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Ticker -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- ============================================================
+     DESCUBRE LAS FRAGANCIAS — featured decants
+     ============================================================ -->
+<section class="section" id="descubre">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Formato Noir</span>
+      <h2 class="section-title">Descubre las fragancias</h2>
+      <p class="section-sub">Prueba, descubre y encuentra tu próxima fragancia sin necesidad de comprar una botella completa.</p>
+    </div>
+    <div class="featured-grid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     QUÉ ES UN DECANT
+     ============================================================ -->
+<section class="section section-alt" id="que-es-un-decant">
+  <div class="container">
+    <div class="explainer">
+      <div class="explainer-diagram reveal" aria-hidden="true">
+        <svg class="ripple-svg" viewBox="0 0 400 400">
+          <circle class="ripple-anim r1" cx="200" cy="210" r="60"/>
+          <circle class="ripple-anim r2" cx="200" cy="210" r="100"/>
+          <circle class="ripple-anim r3" cx="200" cy="210" r="140"/>
+          <g class="bottle" transform="translate(178,150)">
+            <rect x="0" y="24" width="44" height="80" rx="4"/>
+            <rect x="14" y="6" width="16" height="18" rx="2"/>
+            <rect x="10" y="0" width="24" height="9" rx="2" class="bottle-cap"/>
+            <line x1="6" y1="48" x2="38" y2="48" stroke-width=".6"/>
+            <line x1="6" y1="62" x2="38" y2="62" stroke-width=".6"/>
+          </g>
+        </svg>
+      </div>
+      <div class="explainer-cards">
+        <span class="eyebrow reveal">Para quienes aún no lo saben</span>
+        <h2 class="section-title reveal" style="margin-bottom:.5rem;">¿Qué es un decant?</h2>
+        <p class="section-sub reveal" style="max-width:52ch; margin-bottom:.5rem;">Un decant es perfume 100% original, fraccionado directamente desde el frasco de fábrica en un formato pequeño — sin diluir, sin alterar, sin imitaciones.</p>
+
+        <div class="explainer-card reveal">
+          <span class="explainer-num">5</span>
+          <div>
+            <h3>5 ML</h3>
+            <p>Ideal para probar una fragancia nueva. Suficiente para varios usos antes de decidir si será tu próxima firma olfativa.</p>
+          </div>
+        </div>
+        <div class="explainer-card reveal">
+          <span class="explainer-num">10</span>
+          <div>
+            <h3>10 ML</h3>
+            <p>Ideal para llevar una fragancia contigo durante más tiempo — perfecta para el bolso, la maleta o el escritorio.</p>
+          </div>
+        </div>
+        <p class="explainer-note reveal">En ambos casos obtienes el mismo perfume que sale del frasco original, en la cantidad justa que necesitas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MÁS VENDIDOS
+     ============================================================ -->
+<section class="section" id="mas-vendidos">
+  <div class="container">
+    <div class="section-head split reveal">
+      <div>
+        <span class="eyebrow">Los favoritos de Noir</span>
+        <h2 class="section-title">Más vendidos</h2>
+      </div>
+      <p class="section-sub" style="margin-top:0;">Las fragancias que más se agotan, en decant.</p>
+    </div>
+    <div class="rail-wrap">
+      <div class="rail" id="bestsellerRail"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CATÁLOGO DE DECANTS
+     ============================================================ -->
+<section class="section section-alt" id="decants">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">La colección completa</span>
+      <h2 class="section-title">Catálogo de decants</h2>
+      <p class="section-sub">Cada fragancia disponible en 5&nbsp;ML y 10&nbsp;ML. El corazón de Noir.</p>
+    </div>
+
+    <div class="filters-bar reveal">
+      <select class="filter-select" id="filterBrand">
+        <option value="">Marca</option>
+      </select>
+      <select class="filter-select" id="filterGender">
+        <option value="">Género</option>
+        <option value="Hombre">Hombre</option>
+        <option value="Mujer">Mujer</option>
+        <option value="Unisex">Unisex</option>
+      </select>
+      <select class="filter-select" id="filterFamily">
+        <option value="">Tipo de fragancia</option>
+      </select>
+      <select class="filter-select" id="filterPrice">
+        <option value="">Precio (5 ML)</option>
+        <option value="0-30000">Hasta $30.000</option>
+        <option value="30000-50000">$30.000 – $50.000</option>
+        <option value="50000-999999999">Más de $50.000</option>
+      </select>
+      <button class="filter-toggle" id="filterBestseller" type="button">Más vendidos</button>
+      <button class="filter-toggle" id="filterStock" type="button">Solo disponibles</button>
+      <span class="filters-count" id="filtersCount"></span>
+
+      <div class="filter-search">
+        <input type="text" id="catalogSearch" placeholder="Buscar por nombre o marca…" aria-label="Buscar en catálogo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      </div>
+    </div>
+
+    <div class="grid-4" id="catalogGrid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PERFUMES 100 ML
+     ============================================================ -->
+<section class="section section-100" id="perfumes-100">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Colección completa</span>
+      <h2 class="section-title">Perfumes 100 ML</h2>
+      <p class="section-sub">Para quienes ya encontraron su fragancia.</p>
+    </div>
+    <div class="p100-grid" id="p100Grid"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NOSOTROS
+     ============================================================ -->
+<section class="section" id="nosotros">
+  <div class="container">
+    <div class="nosotros">
+      <div class="nosotros-copy">
+        <span class="eyebrow reveal">La casa Noir</span>
+        <h2 class="section-title reveal">Nosotros</h2>
+        <p class="reveal">Noir nació de una idea simple: nadie debería comprar un frasco completo sin antes conocer la fragancia. Seleccionamos perfumes originales de casas reconocidas y los fraccionamos con cuidado, para que cada persona pueda explorar su próxima firma olfativa sin presión ni desperdicio.</p>
+        <p class="reveal">Cada decant que sale de Noir conserva la fórmula exacta del frasco original — mismo perfume, mismo lote, mismo carácter — únicamente en un formato más pequeño y accesible.</p>
+        <div class="pillars reveal">
+          <span class="pillar">Perfumes originales</span>
+          <span class="pillar">Fraccionado artesanal</span>
+          <span class="pillar">Empaque discreto</span>
+        </div>
+      </div>
+      <div class="nosotros-visual reveal" aria-hidden="true">
+        <svg class="ripple-svg" viewBox="0 0 400 420">
+          <circle cx="200" cy="220" r="90"/>
+          <circle cx="200" cy="220" r="140"/>
+          <g class="bottle" transform="translate(150,90)">
+            <rect x="0" y="40" width="100" height="170" rx="6"/>
+            <rect x="34" y="10" width="32" height="34" rx="3"/>
+            <rect x="26" y="0" width="48" height="14" rx="3" class="bottle-cap"/>
+            <line x1="16" y1="90" x2="84" y2="90" stroke-width=".6"/>
+            <line x1="16" y1="115" x2="84" y2="115" stroke-width=".6"/>
+            <line x1="16" y1="140" x2="84" y2="140" stroke-width=".6"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACTO
+     ============================================================ -->
+<section class="section section-alt" id="contacto">
+  <div class="container">
+    <div class="contacto">
+      <div class="contact-info">
+        <span class="eyebrow reveal">Hablemos</span>
+        <h2 class="section-title reveal">Contacto</h2>
+        <p class="section-sub reveal">¿Dudas sobre una fragancia o tu pedido? Escríbenos, con gusto te asesoramos.</p>
+        <dl>
+          <div class="contact-row"><dt>WhatsApp</dt><dd id="contactWhatsappText">+57 320 510 4511</dd></div>
+          <div class="contact-row"><dt>Correo</dt><dd>hola@noir.co</dd></div>
+          <div class="contact-row"><dt>Envíos</dt><dd>A toda Colombia</dd></div>
+          <div class="contact-row"><dt>Instagram</dt><dd>@noir_perfumeria_cerete</dd></div>
+        </dl>
+        <a class="btn btn-primary" style="margin-top:2rem;" id="contactWhatsappBtn" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      </div>
+      <form class="contact-form reveal" id="contactForm">
+        <div class="field">
+          <label for="cfName">Nombre</label>
+          <input type="text" id="cfName" required>
+        </div>
+        <div class="field">
+          <label for="cfEmail">Correo</label>
+          <input type="email" id="cfEmail" required>
+        </div>
+        <div class="field">
+          <label for="cfMsg">Mensaje</label>
+          <textarea id="cfMsg" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Enviar mensaje</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="logo-text">Noir</span>
+        <p>Perfumería de autor. Decants originales de 5&nbsp;ML y 10&nbsp;ML, y perfumes completos de 100&nbsp;ML para quienes ya encontraron su fragancia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Tienda</h4>
+        <ul>
+          <li><a href="#decants">Decants</a></li>
+          <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+          <li><a href="#mas-vendidos">Más vendidos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Marca</h4>
+        <ul>
+          <li><a href="#que-es-un-decant">¿Qué es un decant?</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Síguenos</h4>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 3v10.5a3.5 3.5 0 1 1-3-3.46V7a7 7 0 0 0 7 4V8a4 4 0 0 1-4-5Z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Noir. Todos los derechos reservados.</span>
+      <span>Perfumes originales, fraccionados con cuidado.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     CART DRAWER
+     ============================================================ -->
+<div class="overlay" id="overlay"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+  <div class="cart-head">
+    <h3>Tu carrito</h3>
+    <button class="icon-btn" id="cartClose" aria-label="Cerrar carrito">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-foot">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">$0</span>
+    </div>
+    <a class="btn btn-primary btn-block" id="cartWhatsappBtn" target="_blank" rel="noopener">Finalizar por WhatsApp</a>
+  </div>
+</aside>
+
+<!-- ============================================================
+     PRODUCT MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalBox" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="modal-media" id="modalMedia">
+      <button class="modal-close" id="modalClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <span class="modal-brand" id="modalBrand"></span>
+      <h3 class="modal-name" id="modalName"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-notes">
+        <h4>Notas de la fragancia</h4>
+        <p id="modalNotes"></p>
+      </div>
+      <div class="modal-size-label">Presentaciones disponibles</div>
+      <div class="size-toggle" id="modalSizeToggle"></div>
+      <div class="modal-price" id="modalPrice"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary btn-block" id="modalAddCart">Agregar al carrito</button>
+        <a class="btn btn-whatsapp btn-block" id="modalWhatsapp" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.8 2.7 5.2 5.5 5.5"/></svg>
+          Comprar por WhatsApp
+        </a>
+      </div>
+      <div class="modal-full-note" id="modalFullNote"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4 10-10"/></svg>
+  <span id="toastText">Agregado al carrito</span>
+</div>
+
+<!-- Floating WhatsApp (mobile) -->
+<a class="fab-whatsapp" id="fabWhatsapp" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.8 2.7 5.2 5.5 5.5"/></svg>
+</a>
+
+<script src="script.js"></script>
+</body>
+</html>
