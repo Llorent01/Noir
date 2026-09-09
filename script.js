@@ -27,7 +27,7 @@ const PRODUCTS = [
 
   desc: "Una fragancia intensa y moderna con una combinación cálida de especias, notas aromáticas y un fondo amaderado. Su carácter envolvente y llamativo la convierte en una excelente opción para la noche y ocasiones especiales.",
 
-  price5: 25000, price10: 45000, full100: 0,
+  price5: 25000, price10: 45000, full100: 380000,
 
   bestSeller: false, inStock: true
   },
@@ -40,7 +40,7 @@ const PRODUCTS = [
 
   desc: "Una fragancia cálida, especiada y envolvente con un carácter dulce y ahumado. Su combinación de tabaco, especias y notas ambaradas crea un aroma intenso y sofisticado, ideal para la noche y ocasiones especiales.",
 
-  price5: 25000, price10: 45000, full100: 0,
+  price5: 25000, price10: 45000, full100: 295000,
 
   bestSeller: false, inStock: true
   },
@@ -49,7 +49,7 @@ const PRODUCTS = [
     family: "Oriental Especiado", familyTag: "Oriental",
     notes: "Manzana, canela, vainilla, ámbar",
     desc: "Cálido, dulce y envolvente. Una fragancia oriental pensada para las noches donde quieres dejar huella.",
-    price5: 25000, price10: 45000, full100: 220000,
+    price5: 25000, price10: 45000, full100: 235000,
     bestSeller: false, inStock: false
   },
   {
@@ -57,16 +57,16 @@ const PRODUCTS = [
     family: "Aromático Amaderado", familyTag: "Amaderado",
     notes: "Piña, manzana, abedul, almizcle",
     desc: "Fresco, afrutado y con una estela amaderada intensa. Un clásico moderno con una relación calidad-precio excepcional.",
-    price5: 25000, price10: 45000, full100: 195000,
-    bestSeller: false, inStock: true
+    price5: 25000, price10: 45000, full100: 245000,
+    bestSeller: true, inStock: true
   },
   {
     id: 10, image: "img/Perfume 100ml/9am dive.jpg", name: "9AM Dive", brand: "Afnan", gender: "Hombre",
     family: "Acuático Fresco", familyTag: "Fresco",
     notes: "Bergamota, sal marina, ámbar, almizcle",
     desc: "Fresco y acuático, inspirado en la brisa del mar. Ideal para el uso diario en climas cálidos.",
-    price5: 25000, price10: 45000, full100: 210000,
-    bestSeller: false, inStock: true
+    price5: 25000, price10: 45000, full100: 255000,
+    bestSeller: true, inStock: true
   }
 ];
 
@@ -152,7 +152,7 @@ function decantCard(p, mode){
     ? `<div class="card-actions">
          <button type="button" class="btn btn-primary btn-sm add-cart-btn" data-id="${p.id}" ${!p.inStock?"disabled":""}>Agregar al carrito</button>
          <a class="btn btn-whatsapp btn-sm quick-wa-btn" data-id="${p.id}" target="_blank" rel="noopener">
-           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 12a8 8 0 1 1-3.8-6.8L20 4l-1.1 3.9A7.96 7.96 0 0 1 20 12Z"/><path d="M8.5 9.5c.3 2.8 2.7 5.2 5.5 5.5"/></svg>
+           <img src="assets/whatsapp.svg" alt="" aria-hidden="true">
            Comprar por WhatsApp
          </a>
        </div>`
@@ -317,7 +317,7 @@ function renderCart(){
       const price = c.size === "100" ? p.full100 : (c.size === "10" ? p.price10 : p.price5);
       return `
       <div class="cart-item" data-id="${c.id}" data-size="${c.size}">
-        <div class="cart-item-media">${c.size === "100" ? svgFull() : svgDecant()}</div>
+        <div class="cart-item-media"><img src="${p.image}" alt="${p.name}"></div>
         <div class="cart-item-info">
           <div class="cart-item-name">${p.name}</div>
           <div class="cart-item-variant">${variantLabel(c.size)}</div>
@@ -442,8 +442,11 @@ function openModal(id){
   modalSize = "5";
   const p = byId(id);
 
-  $("#modalMedia").querySelector("svg")?.remove();
-  $("#modalMedia").insertAdjacentHTML("beforeend", svgDecant());
+  $("#modalMedia").querySelector(".modal-product-image")?.remove();
+  $("#modalMedia").insertAdjacentHTML(
+    "beforeend",
+    `<img class="modal-product-image" src="${p.image}" alt="${p.name}">`
+  );
   $("#modalBrand").textContent = p.brand;
   $("#modalName").textContent = p.name;
   $("#modalDesc").textContent = p.desc;
