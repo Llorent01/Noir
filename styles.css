@@ -350,7 +350,7 @@ input, select{ font-family: inherit; }
   padding-top: 1.4rem;
 }
 .hero-meta div{ font-size: .68rem; letter-spacing:.12em; text-transform:uppercase; color: var(--muted); }
-.hero-meta span{ display:block; font-family: var(--font-display); font-size:1.3rem; color: var(--cream); letter-spacing:0; margin-top:.2rem; text-transform:none; }
+.hero-meta span{ display:block; font-family: var(--font-body); font-weight:600; font-size:1.05rem; color: var(--cream); letter-spacing:.01em; margin-top:.35rem; text-transform:none; }
 
 .hero-visual{
   position:relative;
@@ -488,24 +488,48 @@ input, select{ font-family: inherit; }
 
 .card-actions{ display:flex; flex-direction:column; gap: .55rem; margin-top: 1.2rem; }
 
-/* Bestseller rail */
+/* Bestseller carousel */
+.carousel-head{
+  display:flex; align-items:flex-end; justify-content:space-between; gap:1.5rem;
+}
+.carousel-controls{ display:flex; align-items:center; gap:.6rem; padding-bottom:.3rem; }
+.carousel-arrow{
+  width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--line-strong);
+  background:transparent; color: var(--cream);
+  display:flex; align-items:center; justify-content:center;
+  transition: all .25s var(--ease);
+  flex-shrink:0;
+}
+.carousel-arrow:hover{ border-color: var(--cream); }
+.carousel-arrow:disabled{ opacity:.25; pointer-events:none; }
+.carousel-arrow svg{ width:13px; height:13px; }
+@media (max-width: 640px){
+  .carousel-controls{ display:none; }
+}
+
 .rail-wrap{ position:relative; }
 .rail{
   display:flex; gap: 1.4rem;
   overflow-x:auto;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   padding-bottom: .5rem;
   -ms-overflow-style:none; scrollbar-width:none;
 }
 .rail::-webkit-scrollbar{ display:none; }
 .rail .card{ min-width: 260px; scroll-snap-align:start; }
 
-/* ============================================================
-   Featured "Descubre las fragancias" strip
-   ============================================================ */
-.featured-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:1.6rem; }
-@media (max-width: 1080px){ .featured-grid{ grid-template-columns: repeat(2,1fr);} }
-@media (max-width: 620px){ .featured-grid{ grid-template-columns: 1fr; } }
+.carousel-dots{
+  display:flex; align-items:center; justify-content:center;
+  gap: .45rem; margin-top: 1.6rem;
+}
+.carousel-dot{
+  width:5px; height:5px; padding:0; border:none; border-radius:3px;
+  background: var(--line-strong);
+  transition: all .3s var(--ease);
+}
+.carousel-dot.active{ width:18px; background: var(--accent); }
 
 /* ============================================================
    Decant explainer
@@ -529,7 +553,7 @@ input, select{ font-family: inherit; }
   color: var(--accent);
   line-height:1;
 }
-.explainer-card h3{ font-family: var(--font-display); font-size:1.3rem; color:var(--cream); font-weight:500; }
+.explainer-card h3{ font-family: var(--font-body); font-size:1.05rem; color:var(--cream); font-weight:600; letter-spacing:.02em; }
 .explainer-card p{ margin-top:.5rem; font-size:.9rem; color: var(--bone); line-height:1.7; }
 .explainer-note{ margin-top: .5rem; font-size:.88rem; color: var(--muted); line-height:1.8; border-top:1px solid var(--line); padding-top:1.4rem; }
 
@@ -582,23 +606,6 @@ input, select{ font-family: inherit; }
 .filter-search svg{ position:absolute; right:0; width:15px; height:15px; stroke: var(--muted); pointer-events:none; }
 .filters-count{ font-size:.72rem; color: var(--muted); letter-spacing:.05em; margin-left:.3rem; }
 .empty-state{ text-align:center; padding: 4rem 1rem; color: var(--muted); font-size:.9rem; grid-column: 1/-1; }
-
-/* ============================================================
-   Perfumes 100ML section
-   ============================================================ */
-.section-100{ background: var(--black-deep); }
-.p100-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 2.4rem; }
-@media (max-width: 900px){ .p100-grid{ grid-template-columns: repeat(2,1fr); gap:1.4rem; } }
-@media (max-width: 620px){ .p100-grid{ grid-template-columns: 1fr; } }
-.card-100{
-  border: 1px solid var(--line);
-  padding: 0;
-  background: transparent;
-}
-.card-100 .card-media{ aspect-ratio: 3/4; background: radial-gradient(ellipse at 50% 25%, rgba(182,144,92,0.08), transparent 70%); }
-.card-100 .card-body{ text-align:center; align-items:center; padding: 1.8rem 1.5rem 2.2rem; }
-.card-100 .card-price{ margin-top:1.3rem; font-size:1.7rem; }
-.card-100 .card-actions{ width:100%; margin-top:1.4rem; }
 
 /* ============================================================
    Nosotros
@@ -747,15 +754,35 @@ input, select{ font-family: inherit; }
 .modal-notes{ margin-top: 1.4rem; padding-top:1.2rem; border-top: 1px solid var(--line); }
 .modal-notes h4{ font-size:.66rem; letter-spacing:.16em; text-transform:uppercase; color: var(--muted); margin-bottom:.6rem; }
 .modal-notes p{ font-size:.88rem; color: var(--bone); line-height:1.7; }
-.modal-size-label{ font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color: var(--muted); margin-top:1.6rem; margin-bottom:.6rem; }
+.modal-size-label{ font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color: var(--muted); margin-top:1.6rem; margin-bottom:.7rem; }
 .modal-price{ font-family: var(--font-display); font-size: 1.9rem; color: var(--accent); margin-top:1.1rem; }
 .modal-actions{ display:flex; flex-direction:column; gap:.65rem; margin-top:1.4rem; }
-.modal-full-note{
-  margin-top: 1.6rem; padding-top: 1.4rem; border-top: 1px solid var(--line);
-  display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+
+/* Variant groups: primary (5/10) get protagonism, secondary (15/20) are
+   smaller, full bottle (100ML) reads as a distinct, secondary alternative */
+.variant-group{ margin-bottom: .9rem; }
+.variant-group:last-child{ margin-bottom:0; }
+.variant-group-label{
+  font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color: var(--muted);
+  margin-bottom:.5rem; display:block;
 }
-.modal-full-note p{ font-size:.82rem; color: var(--muted); }
-.modal-full-note a{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color: var(--cream); border-bottom:1px solid var(--accent); padding-bottom:2px; }
+.size-opt-primary{ font-size:.82rem; padding:.85rem .5rem; font-weight:500; white-space:nowrap; }
+.size-opt-secondary{ font-size:.7rem; padding:.55rem .4rem; color: var(--muted); white-space:nowrap; }
+.size-opt-secondary.active{ color: var(--black); }
+
+.variant-full-wrap{ margin-top: 1.3rem; padding-top: 1.2rem; border-top: 1px solid var(--line); }
+.variant-full{
+  display:flex; align-items:center; justify-content:space-between;
+  width:100%; gap:1rem;
+  border:1px solid var(--line); border-radius: var(--radius);
+  background:transparent;
+  padding:.85rem 1.1rem; margin-top:.6rem;
+  transition: border-color .25s var(--ease), background .25s var(--ease);
+}
+.variant-full:hover{ border-color: var(--line-strong); }
+.variant-full.active{ border-color: var(--accent); background: var(--accent-soft); }
+.variant-full-label{ font-size:.76rem; color: var(--bone); letter-spacing:.02em; }
+.variant-full-price{ font-family: var(--font-body); font-weight:600; font-size:.88rem; color: var(--cream); }
 
 /* ============================================================
    Toast

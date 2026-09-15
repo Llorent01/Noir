@@ -27,8 +27,8 @@
     <nav class="main-nav" aria-label="Navegación principal">
       <ul>
         <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#decants" class="nav-featured">Decants<span class="nav-dot"></span></a></li>
-        <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+        <li><a href="#decants" class="nav-featured">Perfumes<span class="nav-dot"></span></a></li>
+        <li><a href="#mas-vendidos">Más vendidos</a></li>
         <li><a href="#que-es-un-decant">¿Qué es un decant?</a></li>
         <li><a href="#nosotros">Nosotros</a></li>
         <li><a href="#contacto">Contacto</a></li>
@@ -72,7 +72,7 @@
   <ul>
     <li><a href="#inicio">Inicio</a></li>
     <li><a href="#decants">Decants</a></li>
-    <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+    <li><a href="#mas-vendidos">Más vendidos</a></li>
     <li><a href="#que-es-un-decant">¿Qué es un decant?</a></li>
     <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#contacto">Contacto</a></li>
@@ -95,7 +95,7 @@
       <p class="hero-text">Explora perfumes originales en presentaciones de 5&nbsp;ML y 10&nbsp;ML. Prueba lo que quieras, sin comprometerte con un frasco completo.</p>
       <div class="hero-cta">
         <a href="#decants" class="btn btn-primary">Ver decants</a>
-        <a href="#perfumes-100" class="btn btn-outline">Ver perfumes 100 ML</a>
+        <a href="#mas-vendidos" class="btn btn-outline">Ver más vendidos</a>
       </div>
       <div class="hero-meta">
         <div>Formato principal<span>5 ML · 10 ML</span></div>
@@ -127,16 +127,29 @@
 </div>
 
 <!-- ============================================================
-     DESCUBRE LAS FRAGANCIAS — featured decants
+     MÁS VENDIDOS — carousel
      ============================================================ -->
-<section class="section" id="descubre">
+<section class="section" id="mas-vendidos">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Formato Noir</span>
-      <h2 class="section-title">Descubre las fragancias</h2>
-      <p class="section-sub">Prueba, descubre y encuentra tu próxima fragancia sin necesidad de comprar una botella completa.</p>
+    <div class="carousel-head reveal">
+      <div>
+        <span class="eyebrow">Los favoritos de Noir</span>
+        <h2 class="section-title">Más vendidos</h2>
+        <p class="section-sub" style="margin-top:.7rem;">Las fragancias que más se agotan, en decant.</p>
+      </div>
+      <div class="carousel-controls">
+        <button type="button" class="carousel-arrow" id="carouselPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button type="button" class="carousel-arrow" id="carouselNext" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
     </div>
-    <div class="featured-grid" id="featuredGrid"></div>
+    <div class="rail-wrap">
+      <div class="rail" id="bestsellerRail"></div>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
   </div>
 </section>
 
@@ -186,32 +199,14 @@
 </section>
 
 <!-- ============================================================
-     MÁS VENDIDOS
-     ============================================================ -->
-<section class="section" id="mas-vendidos">
-  <div class="container">
-    <div class="section-head split reveal">
-      <div>
-        <span class="eyebrow">Los favoritos de Noir</span>
-        <h2 class="section-title">Más vendidos</h2>
-      </div>
-      <p class="section-sub" style="margin-top:0;">Las fragancias que más se agotan, en decant.</p>
-    </div>
-    <div class="rail-wrap">
-      <div class="rail" id="bestsellerRail"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CATÁLOGO DE DECANTS
+     EXPLORA NUESTRAS FRAGANCIAS — catálogo único
      ============================================================ -->
 <section class="section section-alt" id="decants">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">La colección completa</span>
-      <h2 class="section-title">Catálogo de decants</h2>
-      <p class="section-sub">Cada fragancia disponible en 5&nbsp;ML y 10&nbsp;ML. El corazón de Noir.</p>
+      <h2 class="section-title">Explora nuestras fragancias</h2>
+      <p class="section-sub">Cada perfume, en una sola ficha: elige entre 5&nbsp;ML, 10&nbsp;ML y más presentaciones, incluyendo el frasco completo de 100&nbsp;ML.</p>
     </div>
 
     <div class="filters-bar reveal">
@@ -244,20 +239,6 @@
     </div>
 
     <div class="grid-4" id="catalogGrid"></div>
-  </div>
-</section>
-
-<!-- ============================================================
-     PERFUMES 100 ML
-     ============================================================ -->
-<section class="section section-100" id="perfumes-100">
-  <div class="container">
-    <div class="section-head center reveal">
-      <span class="eyebrow">Colección completa</span>
-      <h2 class="section-title">Perfumes 100 ML</h2>
-      <p class="section-sub">Para quienes ya encontraron su fragancia.</p>
-    </div>
-    <div class="p100-grid" id="p100Grid"></div>
   </div>
 </section>
 
@@ -348,8 +329,7 @@
       <div class="footer-col">
         <h4>Tienda</h4>
         <ul>
-          <li><a href="#decants">Decants</a></li>
-          <li><a href="#perfumes-100">Perfumes 100 ML</a></li>
+          <li><a href="#decants">Explora fragancias</a></li>
           <li><a href="#mas-vendidos">Más vendidos</a></li>
         </ul>
       </div>
@@ -425,7 +405,6 @@
           Comprar por WhatsApp
         </a>
       </div>
-      <div class="modal-full-note" id="modalFullNote"></div>
     </div>
   </div>
 </div>
