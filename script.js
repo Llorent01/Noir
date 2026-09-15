@@ -2165,14 +2165,21 @@ function decantCard(p, mode){
   // mode: 'catalog' -> "Ver fragancia" button
   const size = selectedSize[p.id] || "5";
   const price = priceFor(p, size);
-  const badge = p.bestSeller ? `<span class="card-badge">Más vendido</span>` : (!p.inStock ? `<span class="card-badge badge-outline">Agotado</span>` : "");
+
+  // "Más vendido" y "Agotado" son estados independientes: una fragancia
+  // puede ser ambas cosas a la vez (sigue siendo más vendida aunque
+  // se haya agotado momentáneamente).
+  const badges = `<div class="card-badges">
+    ${p.bestSeller ? `<span class="card-badge">Más vendido</span>` : ""}
+    ${!p.inStock ? `<span class="card-badge badge-outline">Agotado</span>` : ""}
+  </div>`;
 
   const actions = mode === "full"
     ? `<div class="card-actions">
-         <button type="button" class="btn btn-primary btn-sm add-cart-btn" data-id="${p.id}" ${!p.inStock?"disabled":""}>Agregar al carrito</button>
-         <a class="btn btn-whatsapp btn-sm quick-wa-btn" data-id="${p.id}" target="_blank" rel="noopener">
+         <button type="button" class="btn btn-primary btn-sm add-cart-btn" data-id="${p.id}" ${!p.inStock ? "disabled" : ""}>${p.inStock ? "Agregar al carrito" : "Agotado"}</button>
+         <a class="btn btn-whatsapp btn-sm quick-wa-btn" data-id="${p.id}" target="_blank" rel="noopener" ${!p.inStock ? 'disabled aria-disabled="true"' : ""}>
            <img src="assets/whatsapp.svg" alt="" aria-hidden="true">
-           Comprar por WhatsApp
+           ${p.inStock ? "Comprar por WhatsApp" : "Agotado"}
          </a>
        </div>`
     : `<div class="card-actions">
@@ -2182,7 +2189,7 @@ function decantCard(p, mode){
   return `
   <article class="card" data-card-id="${p.id}">
     <div class="card-media">
-      ${badge}
+      ${badges}
       <img src="${p.image}" alt="${p.name}">
     </div>
     <div class="card-body">
@@ -2260,11 +2267,12 @@ function applyFilters(){
    CART LOGIC
    ============================================================ */
 function addToCart(id, size, qty = 1){
+  const p = byId(id);
+  if (!p || !p.inStock) return; // una fragancia agotada no puede comprarse
   const existing = cart.find(c => c.id === id && c.size === size);
   if (existing){ existing.qty += qty; }
   else { cart.push({ id, size, qty }); }
   renderCart();
-  const p = byId(id);
   showToast(`${p.name} — ${size} ML agregado al carrito`);
 }
 
@@ -2387,8 +2395,9 @@ function attachAddCartEvents(scopeEl){
   });
   scopeEl.querySelectorAll(".quick-wa-btn").forEach(btn => {
     const id = Number(btn.dataset.id);
-    const size = selectedSize[id] || "5";
     const p = byId(id);
+    if (!p.inStock) return; // agotado: el botón queda deshabilitado, sin acción
+    const size = selectedSize[id] || "5";
     const price = priceFor(p, size);
     const msg = `Hola, quiero realizar este pedido:\n\nPerfume: ${p.name}\nPresentación: ${size} ML (decant)\nCantidad: 1\nPrecio: ${fmt(price)}`;
     btn.href = waLink(msg);
@@ -2438,8 +2447,20 @@ function openModal(id){
 
   renderModalVariants();
 
-  $("#modalAddCart").onclick = () => { addToCart(p.id, modalSize, 1); };
-  $("#modalAddCart").disabled = !p.inStock;
+  const addBtn = $("#modalAddCart");
+  addBtn.textContent = p.inStock ? "Agregar al carrito" : "Agotado";
+  addBtn.disabled = !p.inStock;
+  addBtn.onclick = p.inStock ? () => { addToCart(p.id, modalSize, 1); } : null;
+
+  const waBtn = $("#modalWhatsapp");
+  if (p.inStock){
+    waBtn.removeAttribute("disabled");
+    waBtn.removeAttribute("aria-disabled");
+  } else {
+    waBtn.setAttribute("disabled", "");
+    waBtn.setAttribute("aria-disabled", "true");
+    waBtn.removeAttribute("href");
+  }
 
   $("#modalOverlay").classList.add("open");
   document.body.style.overflow = "hidden";
@@ -2495,9 +2516,11 @@ function updateModalPrice(){
   const price = priceFor(p, modalSize);
   const isFull = modalSize === "100";
   $("#modalPrice").innerHTML = `${fmt(price)} <small style="font-family:var(--font-body); font-size:.62rem; color:var(--muted); letter-spacing:.1em;">/ ${modalSize} ML</small>`;
-  const presentacion = isFull ? "100 ML (frasco completo)" : `${modalSize} ML (decant)`;
-  const msg = `Hola, quiero realizar este pedido:\n\nPerfume: ${p.name}\nPresentación: ${presentacion}\nCantidad: 1\nPrecio: ${fmt(price)}`;
-  $("#modalWhatsapp").href = waLink(msg);
+  if (p.inStock){
+    const presentacion = isFull ? "100 ML (frasco completo)" : `${modalSize} ML (decant)`;
+    const msg = `Hola, quiero realizar este pedido:\n\nPerfume: ${p.name}\nPresentación: ${presentacion}\nCantidad: 1\nPrecio: ${fmt(price)}`;
+    $("#modalWhatsapp").href = waLink(msg);
+  }
 }
 
 function closeModal(){
@@ -2561,6 +2584,63 @@ function initCarousel(){
   window.addEventListener("resize", buildDots);
 
   buildDots();
+}
+
+/* ============================================================
+   CARRUSEL DE IMÁGENES — sección Inicio
+   Usa las fotos que ya existen en el catálogo, rotando
+   automáticamente con una transición suave (crossfade).
+   ============================================================ */
+function initHeroCarousel(){
+  const outer = $("#heroCarousel");
+  const wrap = $("#heroCarouselSlides");
+  const dotsWrap = $("#heroCarouselDots");
+  if (!outer || !wrap) return;
+
+  const images = PRODUCTS.filter(p => p.image).map(p => ({ src: p.image, alt: p.name }));
+  if (!images.length) return;
+
+  wrap.innerHTML = images.map((img, i) =>
+    `<img class="hero-carousel-slide ${i === 0 ? "active" : ""}" src="${img.src}" alt="${img.alt}" loading="${i === 0 ? "eager" : "lazy"}">`
+  ).join("");
+
+  if (dotsWrap){
+    dotsWrap.innerHTML = images.map((_, i) =>
+      `<button type="button" class="carousel-dot ${i === 0 ? "active" : ""}" data-i="${i}" aria-label="Ver ${images[i].alt}"></button>`
+    ).join("");
+  }
+
+  const slides = Array.from(wrap.children);
+  const dots = dotsWrap ? Array.from(dotsWrap.children) : [];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let idx = 0;
+  let timer;
+
+  function goTo(i){
+    slides[idx]?.classList.remove("active");
+    dots[idx]?.classList.remove("active");
+    idx = (i + slides.length) % slides.length;
+    slides[idx]?.classList.add("active");
+    dots[idx]?.classList.add("active");
+  }
+
+  function startAuto(){
+    if (reduceMotion || slides.length < 2) return;
+    clearInterval(timer);
+    timer = setInterval(() => goTo(idx + 1), 4800);
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      goTo(Number(dot.dataset.i));
+      startAuto();
+    });
+  });
+
+  outer.addEventListener("mouseenter", () => clearInterval(timer));
+  outer.addEventListener("mouseleave", startAuto);
+
+  startAuto();
 }
 
 /* ============================================================
@@ -2641,6 +2721,7 @@ function init(){
   initNav();
   initReveal();
   initCarousel();
+  initHeroCarousel();
 
   attachAllCardEvents(bestsellerRail);
   attachAllCardEvents(catalogGrid);
